@@ -1,0 +1,103 @@
+name: typhoonfighter
+#adopt-info: typhoonfighter
+version: 0.0.5
+summary: Typhoon Force Storm Fighter
+description: |
+  Typhoon Force: Storm Fighter is a shoot'em up where you pilot a spaceship and 
+  navigate your way through the end of the game by fighting swarms of enemies. 
+  So far the game only features 4 enemies and has two short levels as it is 
+  mostly a demo (the maximum score is 30900 for about a minute of gameplay), 
+  so that I can get some feedback, but development is active so if you come back 
+  next week (or even tomorrow) there  will likely be more content. 
+  The goal is to make a game with 3 levels that have a lifespan each of 
+  about 5 minutes, for a total of 15 minutes. 
+  The final game will be released for free.
+
+  The keyboard controls  are included in the splash screen, 
+  but you can also use a Gamepad
+
+  Keyboard / Gamepad (XBox button names)
+
+  Start the game / Pause  Space / Start
+  Move  Arrow keys / D-Pad
+  Fire  X / A
+  Move slowly  Hold Left shift / LB
+  Toggle debug overlay  F12 / [only on keyboard]
+  Reset game in debug  R / [only on keyboard]
+  
+  Written with LÖVE
+  
+license: MIT
+base: core24
+grade: stable 
+confinement: strict
+compression: lzo
+
+website: https://frost-dev.itch.io/typhoon-force
+source-code: https://github.com/kz6fittycent/typhoon-fighter
+contact: https://github.com/kz6fittycent/typhoon-fighter
+issues: https://github.com/kz6fittycent/typhoon-fighter/issues
+icon: snap/gui/typhoonfighter.png
+donation: https://www.patreon.com/kz6fittycent
+
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
+
+apps:
+  typhoonfighter:
+    extensions:
+      - gnome
+    command: launch_lovegame
+    environment:
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_ON/pulseaudio:$SNAP"      
+    plugs: 
+      - audio-playback
+      - x11
+      - opengl
+      - unity7
+
+parts:
+  typhoonfighter:
+    source: https://github.com/kz6fittycent/typhoon-fighter
+    source-type: git
+    plugin: nil
+
+#    override-pull: |
+#      craftctl default
+#      craftctl set version="$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)" 
+                      
+    stage-packages:
+      - freeglut3-dev
+      - libgl1-mesa-dri
+      - libglew2.2
+      - lua-socket
+      - libluajit-5.1-2
+      - libsdl2-2.0-0
+      - libopenal1
+      - libilmbase-dev
+      - libdevil1c2
+      - libogg0
+      - libmpg123-0
+      - libtheora0
+      - libvorbisfile3
+      - libmodplug1
+      - libphysfs1
+
+  love0.10.2:
+    plugin: dump
+    source: https://github.com/love2d/love/releases/download/0.10.2/liblove0_0.10.2ppa1_amd64.deb
+    
+  liblove0.10.2:
+    plugin: dump
+    source: https://github.com/love2d/love/releases/download/0.10.2/love_0.10.2ppa1_amd64.deb 
+    
+  lovegame:
+    plugin: dump
+    source: ./lovegame   
+
+  launcher:
+    plugin: dump
+    source: ./launcher
+      

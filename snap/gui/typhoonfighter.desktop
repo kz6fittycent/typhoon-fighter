@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Typhoon Force
+Comment=Typhoon Force: Storm Fighter
+Exec=typhoonfighter
+Icon=${SNAP}/meta/gui/typhoonfighter.png
+Terminal=false
+Type=Application
+Categories=Game;Simulation;
+GenericName=
+Keywords=game
