@@ -85,13 +85,8 @@ parts:
       - libmodplug1
       - libphysfs1
 
-  love0.10.2:
-    plugin: dump
-    source: https://github.com/love2d/love/releases/download/0.10.2/liblove0_0.10.2ppa1_amd64.deb
-    
-  liblove0.10.2:
-    plugin: dump
-    source: https://github.com/love2d/love/releases/download/0.10.2/love_0.10.2ppa1_amd64.deb 
+    stage-snaps:
+      - love
     
   lovegame:
     plugin: dump
